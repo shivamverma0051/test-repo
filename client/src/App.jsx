@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Navbar from './components/Navbar'
 import { Route, Routes, useLocation } from 'react-router-dom'
 import Home from './pages/Home'
@@ -9,6 +9,7 @@ import Login from './components/Login';
 import AllProducts from './pages/AllProducts';
 import ProductCategory from './pages/ProductCategory';
 import ProductDetails from './pages/ProductDetails';
+
 
 
 
@@ -33,6 +34,7 @@ const App = () => {
            <Route path='/products' element={<AllProducts/>}/>
             <Route path='/products/:category' element={<ProductCategory/>}/>
             <Route path='/products/:category/:id' element={<ProductDetails/>}/>
+           
             
             
         </Routes>
