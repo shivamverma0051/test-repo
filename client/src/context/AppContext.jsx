@@ -2,6 +2,10 @@ import { createContext, useState, useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { dummyProducts } from "../assets/assets";
 import toast from "react-hot-toast";
+import axios from 'axios'
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
 
@@ -16,6 +20,8 @@ const currency = import.meta.env.VITE_CURRENCY;
     const [products, setProducts] = useState([])
     const [cartItems, setcartItems ] = useState({})
     const [searchQuery, setSearchQuery ] = useState({})
+
+    
 
     // fetch allproducts 
     const fetchProducts = async ()=>{
@@ -81,13 +87,16 @@ const currency = import.meta.env.VITE_CURRENCY;
     useEffect(()=>{
         fetchProducts()
     },[])
+
+    
  
 
     const value = { navigate, user, setUser, isSeller, setIsSeller,
         showUserLogin, setShowUserLogin,products, currency, addToCart,updateCartItem, removeFromCart, cartItems, searchQuery, setSearchQuery,
-        getCartAmount, getCartCount
+        getCartAmount, getCartCount, axios
     
 };
+
 
     return (
         <AppContext.Provider value={value}>
@@ -95,6 +104,7 @@ const currency = import.meta.env.VITE_CURRENCY;
         </AppContext.Provider>
     );
 };
+
 
 export const useAppContext = () => {
     return useContext(AppContext);
